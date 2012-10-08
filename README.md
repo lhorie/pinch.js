@@ -1,5 +1,7 @@
 # pinch.js
 
+[Click here to view a demo](http://lhorie.github.com/pinch.js/demo.html)
+
 jQuery pinch events for browsers w/ touch event support.
 
 - Supports multiple simultaneous pinch events
