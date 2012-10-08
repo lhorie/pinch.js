@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Pinch.js by lhorie</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Pinch.js</h1>
+        <h2>Pinch events for browsers w/ touch event support</h2>
+        <a href="https://github.com/lhorie/pinch.js" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>pinch.js</h1>
+
+<p>jQuery pinch events for browsers w/ touch event support.</p>
+
+<ul>
+<li>Supports multiple simultaneous pinch events</li>
+<li>Provides easy integration with CSS3 2D transform via the <code>pinchchange</code> event</li>
+</ul><h2>API</h2>
+
+<h3>
+<code>pinchstart</code>, <code>pinchmove</code> and <code>pinchend</code>
+</h3>
+
+<p>The event parameter contains some additional data:</p>
+
+<ul>
+<li>
+<code>e.offsetLeft</code> and <code>e.offsetTop</code> - the center point between the two touch events that make up the pinch, relative to the value on pinch start</li>
+<li>
+<code>e.scale</code> - the scale relative to its value on pinch start</li>
+<li>
+<code>e.angle</code> - the angle relative to its value on pinch start</li>
+<li>
+<code>e.prefix</code> - the vendor prefix for CSS3 transforms, e.g. <code>-webkit-</code>
+</li>
+</ul><div class="highlight"><pre><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s2">"pinchstart pinchmove pinchend"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"left: "</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">offsetLeft</span> <span class="o">+</span> <span class="s2">"px"</span><span class="p">)</span> <span class="c1">//left is 0px at pinchstart</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"top: "</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">offsetTop</span> <span class="o">+</span> <span class="s2">"px"</span><span class="p">)</span>   <span class="c1">//top is 0px at pinchstart</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"scale: "</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">scale</span><span class="p">)</span>            <span class="c1">//scale is 1 at pinchstart</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"angle: "</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">angle</span> <span class="o">+</span> <span class="s2">"deg"</span><span class="p">)</span>    <span class="c1">//angle is 0deg at pinchstart</span>
+<span class="p">})</span>
+</pre></div>
+
+<p>To prevent zooming and bouncing in iOS browsers, call e.preventDefault() on <code>pinchstart</code>.</p>
+
+<h3><code>pinchchange</code></h3>
+
+<p>This event is similar to <code>pinchmove</code>, but it event object values are relative to the values at pinch start PLUS the
+<a href="http://www.w3.org/TR/2012/WD-css3-transforms-20120911/#transform-functions">CSS3 translate(), rotate() and scale() values</a> at the time.</p>
+
+<p>This event makes it easy to create zoom and rotation functionality:</p>
+
+<div class="highlight"><pre><span class="nx">$</span><span class="p">(</span><span class="s2">"img"</span><span class="p">).</span><span class="nx">on</span><span class="p">({</span>
+    <span class="nx">pinchstart</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span><span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">()},</span> <span class="c1">//prevent native zooming and bouncing in iOS</span>
+    <span class="nx">pinchchange</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">translate</span> <span class="o">=</span> <span class="s2">"translate("</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">offsetLeft</span> <span class="o">+</span> <span class="s2">"px,"</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">offsetTop</span> <span class="o">+</span> <span class="s2">"px)"</span>
+        <span class="kd">var</span> <span class="nx">scale</span> <span class="o">=</span> <span class="s2">"scale("</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">scale</span> <span class="o">+</span> <span class="s2">","</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">scale</span> <span class="o">+</span> <span class="s2">")"</span>
+        <span class="kd">var</span> <span class="nx">rotate</span> <span class="o">=</span> <span class="s2">"rotate("</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">angle</span> <span class="o">+</span> <span class="s2">"deg)"</span>
+        <span class="kd">var</span> <span class="nx">value</span> <span class="o">=</span> <span class="nx">translate</span> <span class="o">+</span> <span class="s2">" "</span> <span class="o">+</span> <span class="nx">scale</span> <span class="o">+</span> <span class="s2">" "</span> <span class="o">+</span> <span class="nx">rotate</span>
+
+        <span class="c1">//e.g. translate(30px,40px) scale(0.5,0.5) rotate(45deg)</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">style</span><span class="p">[</span><span class="nx">e</span><span class="p">.</span><span class="nx">prefix</span> <span class="o">+</span> <span class="s2">"transform"</span><span class="p">]</span> <span class="o">=</span> <span class="nx">value</span>
+    <span class="p">}</span>
+<span class="p">})</span>
+</pre></div>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/lhorie/pinch.js/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/lhorie/pinch.js/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/lhorie/pinch.js"></a> is maintained by <a href="https://github.com/lhorie">lhorie</a>.</p>
+
+          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="http://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
