@@ -30,6 +30,8 @@
         <section id="main-content">
           <h1>pinch.js</h1>
 
+<p><a href="http://lhorie.github.com/pinch.js/demo.html">Click here to view a demo</a></p>
+
 <p>jQuery pinch events for browsers w/ touch event support.</p>
 
 <ul>
@@ -71,7 +73,8 @@
 <p>This event makes it easy to create zoom and rotation functionality:</p>
 
 <div class="highlight"><pre><span class="nx">$</span><span class="p">(</span><span class="s2">"img"</span><span class="p">).</span><span class="nx">on</span><span class="p">({</span>
-    <span class="nx">pinchstart</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span><span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">()},</span> <span class="c1">//prevent native zooming and bouncing in iOS</span>
+    <span class="c1">//prevent native zooming and bouncing in iOS</span>
+    <span class="nx">pinchstart</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span><span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">()},</span>
     <span class="nx">pinchchange</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
         <span class="kd">var</span> <span class="nx">translate</span> <span class="o">=</span> <span class="s2">"translate("</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">offsetLeft</span> <span class="o">+</span> <span class="s2">"px,"</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">offsetTop</span> <span class="o">+</span> <span class="s2">"px)"</span>
         <span class="kd">var</span> <span class="nx">scale</span> <span class="o">=</span> <span class="s2">"scale("</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">scale</span> <span class="o">+</span> <span class="s2">","</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">scale</span> <span class="o">+</span> <span class="s2">")"</span>
