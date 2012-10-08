@@ -31,7 +31,7 @@ To prevent zooming and bouncing in iOS browsers, call `e.preventDefault()` on `p
 
 ### `pinchchange`
 
-This event is similar to `pinchmove`, but it event object values are relative to the values at pinch start PLUS the
+This event is similar to `pinchmove`, but its event data is relative to the values at pinch start PLUS the
 [CSS3 translate(), rotate() and scale() values](http://www.w3.org/TR/2012/WD-css3-transforms-20120911/#transform-functions) at the time.
 
 This event makes it easy to create zoom and rotation functionality:
