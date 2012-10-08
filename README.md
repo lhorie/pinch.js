@@ -27,7 +27,7 @@ $(document).on("pinchstart pinchmove pinchend", function(e) {
 })
 ```
 
-To prevent zooming and bouncing in iOS browsers, call e.preventDefault() on `pinchstart`.
+To prevent zooming and bouncing in iOS browsers, call `e.preventDefault()` on `pinchstart`.
 
 ### `pinchchange`
 
