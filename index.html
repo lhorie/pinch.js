@@ -9,19 +9,23 @@
 html,body {font:normal 16px Arial;height:100%;margin:0;overflow:hidden;padding:0;width:100%;}
 p {margin:10px;}
 a {bottom:0;position:fixed;right:0;margin:10px;}
+
 #large,#medium {border:10px solid #fff;box-shadow:0 0 5px #888;position:absolute;}
 #large {left:300px;top:30px;transform:rotate(40deg) scale(0.6);}
 #medium {left:100px;top:50px;transform:rotate(-10deg) scale(0.6);}
 		</style>
 	</head>
 	<body>
-		<p>Pinch and drag the pictures</p>
+		<p>Pinch and drag the pictures<br /><small>(if you're using a touch-enabled device)</small></p>
 		<a href="https://github.com/lhorie/pinch.js">Project page on GitHub</a>
+		
 		<img id="large" src="http://www.placekitten.com/600" />
 		<img id="medium" src="http://www.placekitten.com/400" />
+		
 		<script src="http://code.jquery.com/jquery.min.js"></script>
 		<script src="https://raw.github.com/LeaVerou/prefixfree/gh-pages/prefixfree.min.js"></script>
 		<script src="https://raw.github.com/lhorie/pinch.js/master/pinch.min.js"></script>
+		
 		<script>
 $("#medium,#large").on({
 	pinchstart: function(e) {e.preventDefault()},
