@@ -4,12 +4,12 @@
 		<title></title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf8" />
 		<meta name="viewport" content="width=1024" />
-		<link href='http://fonts.googleapis.com/css?family=ABeeZee' rel='stylesheet' type='text/css' />
+		<link href="http://fonts.googleapis.com/css?family=ABeeZee" rel="stylesheet" type="text/css" />
 		<style>
 * {box-sizing:border-box;-webkit-perspective:1000;}
-html,body {background:url(bg.jpg) no-repeat 50% 50%;background-size:100% 100%;color:#fff;font:normal 16px 'ABeeZee';height:100%;margin:0;overflow:hidden;padding:0;text-shadow:1px 1px 1px #000;width:100%;}
-p,a {background:rgba(0,0,0,0.5);border-radius:5px;display:inline-block;margin:10px;padding:10px 20px;}
-a {bottom:0;color:#fff;position:fixed;right:0;}
+html,body {background:url(bg.jpg) no-repeat 50% 50%;background-size:100% 100%;color:#333;font:normal 16px 'ABeeZee';height:100%;margin:0;overflow:hidden;padding:0;width:100%;}
+p,a {background:#ddd;border:5px solid #fff;box-shadow:0 0 10px;display:inline-block;margin:10px;padding:10px 20px;position:relative;z-index:2;}
+a {bottom:0;color:#333;position:fixed;right:0;}
 
 #large,#medium {border:10px solid #fff;box-shadow:0 0 20px #000;position:absolute;}
 #large {left:300px;top:30px;transform:rotate(40deg) scale(0.6);}
@@ -28,15 +28,13 @@ a {bottom:0;color:#fff;position:fixed;right:0;}
 		<script src="https://raw.github.com/lhorie/pinch.js/master/pinch.min.js"></script>
 		
 		<script>
-$("#medium,#large").on({
-	pinchstart: function(e) {e.preventDefault()},
-	pinchchange: function(e) {
-		var translate = "translate(" + e.offsetLeft + "px," + e.offsetTop + "px)"
-		var scale = "scale(" + e.scale + "," + e.scale + ")"
-		var rotate = "rotate(" + e.angle + "deg)"
-		var value = translate + " " + scale + " " + rotate
-		this.style[e.prefix + "transform"] = value
-	}
+$(document).on("touchstart", false)
+$("#medium,#large").on("pinchchange", function(e) {
+	var translate = "translate(" + e.offsetLeft + "px," + e.offsetTop + "px)"
+	var scale = "scale(" + e.scale + "," + e.scale + ")"
+	var rotate = "rotate(" + e.angle + "deg)"
+	var value = translate + " " + scale + " " + rotate
+	this.style[e.prefix + "transform"] = value
 })
 		</script>
 	</body>
