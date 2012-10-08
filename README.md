@@ -46,7 +46,7 @@ $("img").on({
 		var rotate = "rotate(" + e.angle + "deg)"
 		var value = translate + " " + scale + " " + rotate
 		
-		//e.g. translate(30px,40px) scale(0.5,0.5) rotate(45deg)
+		//e.g. -webkit-transform: translate(30px,40px) scale(0.5,0.5) rotate(45deg)
 		this.style[e.prefix + "transform"] = value
 	}
 })
