@@ -38,7 +38,8 @@ This event makes it easy to create zoom and rotation functionality:
 
 ```javascript
 $("img").on({
-	pinchstart: function(e) {e.preventDefault()}, //prevent native zooming and bouncing in iOS
+	//prevent native zooming and bouncing in iOS
+	pinchstart: function(e) {e.preventDefault()},
 	pinchchange: function(e) {
 		var translate = "translate(" + e.offsetLeft + "px," + e.offsetTop + "px)"
 		var scale = "scale(" + e.scale + "," + e.scale + ")"
