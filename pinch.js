@@ -5,8 +5,8 @@ new function() {
 	var curr = []
 	var state = {target: null, scale: 0, angle: 0, x: 0, y: 0}.constructor
 	var states = []
-	var prefixes = ["", "-webkit-", "-moz-", "-o-", "-ms-"]
-	var prefix = prefixes.filter(function(p) {return document.body.style[p + "transform"] !== undefined}).shift() || ""
+	var prefixes = {transform: "", WebkitTransform: "-webkit-", MozTransform: "-moz-", OTransform: "-o-", msTransform: "-ms-"}
+	var prefix = (function() {for (var p in prefixes) if (document.body.style[p] !== undefined) return prefixes[p]})() || ""
 	var trigger = function(el, e, type, scale, angle, x, y) {
 		var event = $.Event(type, {prefix: prefix, scale: scale, angle: angle, offsetLeft: x, offsetTop: y})
 		$(el).trigger(event)
